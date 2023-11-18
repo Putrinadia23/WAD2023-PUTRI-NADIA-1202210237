@@ -8,7 +8,7 @@
 <body>
     <?php include("navbar.php") ?>
     <center>
-        <div class="container">
+        <div class="container mt -5" style="width:50%">
         
             <h1>List Mobil</h1>
 
@@ -16,7 +16,7 @@
             include("connect.php");
 
             // Buatlah query untuk mengambil data dari database (gunakan query SELECT)
-            $query = mysqli_query($connect,"SELECT * FROM showroom_mobil");
+            $result = mysqli_query($connect, "SELECT * FROM showroom_mobil");
             
             
 
@@ -28,42 +28,37 @@
             // 2. Apabila tidak ada data dalam database, maka outputnya adalah pesan 'tidak ada data dalam tabel'
 
             //<!--  **********************  1  **************************     -->
-        if($query){
-            while ($selects = mysqli_fetch_assoc($query)){
+            if (mysqli_num_rows($result) > 0) {
+                echo "<table border='10'>
+                        <tr>
+                            <th>Nama Mobil</th>
+                            <th>Brand Mobil</th>
+                            <th>Warna Mobil</th>
+                            <th>Tipe Mobil</th>
+                            <th>Harga Mobil</th>
+                            <th>Action</th>
+                        </tr>";
+
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo "<tr>
+                            <td>{$row['nama_mobil']}</td>
+                            <td>{$row['brand_mobil']}</td>
+                            <td>{$row['warna_mobil']}</td>
+                            <td>{$row['tipe_mobil']}</td>
+                            <td>{$row['harga_mobil']}</td>
+                            <td><a href='form_detail_mobil.php?id={$row['id']}'>Detail</a></td>
+                          </tr>";
+                }
+                echo "</table>";
+            } else {
+                echo "Tidak ada data dalam tabel.";
             }
         
-        ?>
-        <table class="table">
-        <table class="table table-stripped">
-        <thead>
-        <tr>
-            <th scope="nama_mobil">nama_mobil</th>
-            <th scope="brand_mobil">brand_mobil</th>
-            <th scope="warna_mobil">warna_mobil</th>
-            <th scope="tipe_mobil">tipe_mobil</th>
-            <th scope="harga_mobil">harga_mobil</th>
-        </tr>
-        </thead>
-            <tbody>
-        <tr>
-            <th scope = "row" ><?= $selects?></th>
-            <td><?  $selects['nama_mobil']?></td>
-            <td><? $selects['brand_mobil']?></td>
-            <td><? $selects['warna_mobil']?></td>
-            <td><? $selects['tipe_mobil']?></td>
-            <td><? $selects['harga_mobil']?></td>
-
-        </tr>
-            </tbody>
-            <?php
         
             //<!--  **********************  1  **************************     -->
 
             //<!--  **********************  2  **************************     -->
 
-        } else {
-            echo "Tidak ada dalam table";
-        }
         
             //<!--  **********************  2  **************************     -->
             ?>

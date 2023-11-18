@@ -10,13 +10,15 @@
             include("navbar.php");
             include("connect.php");
             $id = $_GET['id'];
-            // Buatlah query untuk mengambil masing-masing data berdasarkan id dari database (gunakan fungsi GET dan mysqli_fetch_assoc() 
+            // Buatlah query untuk mengambil masing-masing data berdasarkan id dari database (gunakan fungsi GET dan mysqli_fetch_assoc()
             // serta query SELECT dan WHERE)
-            
-            
-
-
-
+            $query = mysqli_query($connect, "SELECT * FROM showroom_mobil WHERE id = '$id'");
+            $detail = mysqli_fetch_assoc($query);
+            $nama_mobil = $detail['nama_mobil'];
+            $brand_mobil = $detail['brand_mobil'];
+            $warna_mobil = $detail['warna_mobil'];
+            $tipe_mobil = $detail['tipe_mobil'];
+            $harga_mobil = $detail['harga_mobil'];
             //
         ?>
         <div class="row">
@@ -28,23 +30,23 @@
                             <form action="" method="POST" enctype="multipart/form-data">
                                 <!-- Tampilkan masing-masing data yang telah diambil dari database tadi -->
                                 <div class="form-floating mb-3">
-                                    <input type="string" class="form-control" name="nama_mobil" id="nama_mobil" value="Tampilkan data nama_mobil disini" disabled>
+                                    <input type="string" class="form-control" name="nama_mobil" id="nama_mobil" value="<?=  $nama_mobil; ?>" disabled>
                                     <label for="nama_mobil">Nama Mobil</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="string" class="form-control" name="brand_mobil" id="brand_mobil" value="" placeholder="Tampilkan data brand_mobil disini"disabled>
+                                    <input type="string" class="form-control" name="brand_mobil" id="brand_mobil" value="<?=  $brand_mobil; ?>" disabled>
                                     <label for="brand_mobil">Brand Mobil</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="string" class="form-control" name="warna_mobil" id="warna_mobil" value="Tampilkan data warna_mobil disini" disabled>
+                                    <input type="string" class="form-control" name="warna_mobil" id="warna_mobil" value="<?=  $warna_mobil; ?>" disabled>
                                     <label for="warna_mobil">Warna Mobil</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="string" class="form-control" name="tipe_mobil" id="tipe_mobil" value="Tampilkan data tipe_mobil disini" disabled>
+                                    <input type="string" class="form-control" name="tipe_mobil" id="tipe_mobil" value="<?=  $tipe_mobil; ?>" disabled>
                                     <label for="tipe_mobil">Tipe Mobil</label>
                                 </div>
                                 <div class="form-floating mb-3">
-                                    <input type="number" class="form-control" name="harga_mobil" id="harga_mobil" value="Tampilkan data harga_mobil disini"disabled>
+                                    <input type="string" class="form-control" name="harga_mobil" id="harga_mobil" value="<?=  $harga_mobil; ?>" disabled>
                                     <label for="harga_mobil">Harga Mobil </label>
                                 </div>
                                 <a name="update" id="update" href="form_update_mobil.php?id=<?php echo $id ?>" class="btn btn-warning mb-3 mt-3 w-100">Edit</a>

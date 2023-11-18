@@ -12,10 +12,20 @@
             $id = $_GET['id'];
             // Buatlah query untuk mengambil masing-masing data berdasarkan id dari database (gunakan fungsi GET dan mysqli_fetch_assoc() 
             // serta query SELECT dan WHERE)
+            $query = mysqli_query($connect, "UPDATE * FROM showroom_mobil WHERE id = '$id'");
+            $detail = mysqli_fetch_assoc($query);
             
-
-
-
+            if ($detail) {
+                $nama_mobil = $detail['nama_mobil'];
+                $brand_mobil = $detail['brand_mobil'];
+                $warna_mobil = $detail['warna_mobil'];
+                $tipe_mobil = $detail['tipe_mobil'];
+                $harga_mobil = $detail['harga_mobil'];
+            } else {
+                // Handle jika data tidak ditemukan
+                echo "Data tidak ditemukan.";
+                exit(); // Hentikan eksekusi kode selanjutnya
+            }
             //
         ?>
         <div class="row">
