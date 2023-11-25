@@ -32,18 +32,18 @@ if (mysqli_num_rows($result) == 0) {
 
 
     // a. Buatlah query untuk melakukan insert data ke dalam database
-    $query2 = "INSERT INTO users (id,name,username,email,password) VALUES ('$id','$name','$username','$email','$password')";
+    $query2 = "INSERT INTO users (name,username,email,password) VALUES ('$name','$username','$email','$password')";
     $insert = mysqli_query($dbs,$query2);
     // b. Buat lagi perkondisian atau percabangan ketika query insert berhasil dilakukan
     //    Buat di dalamnya variabel session dengan key message untuk menampilkan pesan penadftaran berhasil
-    if ($insert){
-        $_SESSION ['message'] = 'Pendataran sukses, silahkan login';
-        $_SESSION ['color'] = 'success';
-        header('location: ../views/login.php');
-    } else {
-        $_SESSION ['message'] = 'pendaftaran gagal';
-        $_SESSION ['color'] = 'danger';
-    }
+        if ($insert){
+            $_SESSION ['message'] = 'Pendataran sukses, silahkan login';
+            $_SESSION ['color'] = 'success';
+            header('Location: ../views/login.php');
+        } else {
+            $_SESSION ['message'] = 'pendaftaran gagal';
+            $_SESSION ['color'] = 'danger';
+        }
     
 }
 // 
@@ -51,9 +51,9 @@ if (mysqli_num_rows($result) == 0) {
 // (5) Buat juga kondisi else
 //     Buat di dalamnya variabel session dengan key message untuk menampilkan pesan error karena data email sudah terdaftar
 else {
-    $_SESSION['message'] = 'Email sudah terdaftar';
-    $_SESSION ['color'] = 'success';
-    header('location: ../views/register.php');
+    $_SESSION['message'] = 'username sudah terdaftar';
+    
+    header('Location: ../views/register.php');
 } 
 
 

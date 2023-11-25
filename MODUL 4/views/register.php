@@ -25,8 +25,8 @@ if (isset($_SESSION['login'])) {
                         <!-- (1) Buatlah alert untuk menampilkan pesan error menggunakan session -->
                         <!-- ----------  Letakkan Kode di bawah ini  ----------- -->
                         <?php if(isset($_SESSION['message'])){ ?>
-                        <div class ="allert allert-danger" role="allert">
-                            <? $_SESSION['message'] ?>
+                        <div class ="alert alert-danger" role="alert">
+                            <?= $_SESSION['message'] ?>
                         </div>
                         <?php unset($_SESSION['message']);} ?>
                         
